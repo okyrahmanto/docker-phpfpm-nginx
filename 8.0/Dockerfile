@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.17
 
 LABEL Maintainer="Oky Rahmanto <oky.rahmanto@gmail.com>" \
       Description="Lightweight container with Nginx 1.18 & PHP-FPM 8.1 based on Alpine Linux (forked from trafex/alpine-nginx-php7)."
@@ -14,31 +14,31 @@ RUN apk --update add ca-certificates
 
 # Install packages
 RUN apk --no-cache add \
-        php7 \
-        php7-fpm \
-        php7-opcache \
-        php7-pecl-apcu \
-        php7-mysqli \
-        php7-pgsql \
-        php7-json \
-        php7-openssl \
-        php7-curl \
-        php7-zlib \
-        php7-soap \
-        php7-xml \
-        php7-fileinfo \
-        php7-phar \
-        php7-intl \
-        php7-dom \
-        php7-xmlreader \
-        php7-ctype \
-        php7-session \
-        php7-iconv \
-        php7-tokenizer \
-        php7-zip \
-        php7-simplexml \
-        php7-mbstring \
-        php7-gd \
+        php81 \
+        php81-fpm \
+        php81-opcache \
+        php81-pecl-apcu \
+        php81-mysqli \
+        php81-pgsql \
+        php81-json \
+        php81-openssl \
+        php81-curl \
+        php81-zlib \
+        php81-soap \
+        php81-xml \
+        php81-fileinfo \
+        php81-phar \
+        php81-intl \
+        php81-dom \
+        php81-xmlreader \
+        php81-ctype \
+        php81-session \
+        php81-iconv \
+        php81-tokenizer \
+        php81-zip \
+        php81-simplexml \
+        php81-mbstring \
+        php81-gd \
         nginx \
         supervisor \
         curl
@@ -48,7 +48,7 @@ RUN apk --no-cache add \
 #    nginx supervisor curl
 
 # https://github.com/codecasts/php-alpine/issues/21
-#RUN ln -s /usr/bin/php7 /usr/bin/php
+#RUN ln -s /usr/bin/php81 /usr/bin/php
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -59,8 +59,8 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 #RUN rm /etc/nginx/conf.d/default.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY config/php.ini /etc/php7/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
+COPY config/php.ini /etc/php81/conf.d/custom.ini
 
 RUN wget https://getcomposer.org/composer-stable.phar -O /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 

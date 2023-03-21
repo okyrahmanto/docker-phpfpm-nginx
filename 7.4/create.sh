@@ -1,0 +1,1 @@
+docker container create --name nginx-fpm-7.4 -e PORT=8080 -e INSTANCE_ID="my first instance" -p 8888:8080 nginx-fpm-alpine-7.4:0.1
